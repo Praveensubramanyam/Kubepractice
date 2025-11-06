@@ -26,7 +26,7 @@ spec:
                 secretKeyRef:
                   name: mongodb-secret
                   key: mongo-root-username
-                  
+
             - name: ME_CONFIG_MONGODB_ADMINPASSWORD
               valueFrom:
                 secretKeyRef:
@@ -38,3 +38,20 @@ spec:
                 configMapKeyRef:
                   name: mongodb-config
                   key: database_url 
+---
+apiVersion : v1
+kind: Service
+metadata:
+  name: mongoexp-service
+spec:
+  selector:
+    app: mongoexp
+
+  type : LoadBalancer
+
+  ports:
+    - protocol: TCP
+      port: 8081  
+      targetPort: 8081
+      nodePort: 30000
+      
