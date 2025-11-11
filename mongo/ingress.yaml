@@ -9,8 +9,5 @@ spec:
       http:
         paths:
         - backend: 
-            service:
-              name: kubernetes-dashboard
-              port:
-                number: 8081 
-              
+            serviceName:  kubernetes-dashboard
+            servicePort: 80
